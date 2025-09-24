@@ -13,8 +13,8 @@ The main script expects several input files in the repository root. Replace thes
 
 | File | Purpose | Key columns |
 | ---- | ------- | ----------- |
-| `My_genes_DecodeME_preprint.csv` | Curated list of 32 DecodeME candidate genes used as seeds. Semicolon separated. | `name`, `NCBI.id`, `list.name`, `weight`, `risk.locus`, `region` |
-| `My_genes_DecodeME.csv` | Expanded fine-mapping catalogue from DecodeME/UK Biobank. Comma separated. Used to filter the preprint list and annotate supporting evidence. | `name`, `NCBI.id`, `list.name`, `weight`, `Gene_type`, `Study_type`, `Phenotype`, ... |
+| `My_genes_DecodeME_preprint.csv` | Curated list of 32 DecodeME candidate genes from the DecodeME preprint. Semicolon separated. | `name`, `NCBI.id`, `list.name`, `weight`, `risk.locus`, `region` |
+| `My_genes_DecodeME.csv` | Results of GWAS analysis and fine mapping of the DecodeME sumstats (see https://github.com/paolomaccallini-hub/DecodeME). Comma separated. Used to filter the preprint list and annotate supporting evidence. | `name`, `NCBI.id`, `list.name`, `weight`, `Gene_type`, `Study_type`, `Phenotype`, ... |
 | `*-associated-targets-*.tsv` | Export from the Open Targets Platform for the disease of interest. Any file whose name contains `-associated-targets-` will be loaded. | `symbol` plus association metadata |
 | `44321_2025_258_MOESM7_ESM.xlsx` *(optional)* | Proteomic results from external studies (UK Biobank in the bundled example). If present, sheets 2 and 3 are processed and saved as `Data/UKBB_proteomics.xlsx`. | `name`, statistical columns |
 
