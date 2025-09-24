@@ -349,13 +349,6 @@ for (i in 1:nrow(OT_module)) {
 }
 if (length(index)>0) OT_module<-OT_module[-index,]
 #
-# Remove from OT_module seed genes to avoid circularity
-#
-index<-which(all.genes$source=="seed")
-Seeds<-all.genes[index,] # only seeds that are not predicted by other seeds
-index<-which(OT_module$name%in%Seeds$name)
-if (length(index)>0) OT_module<-OT_module[-index,]
-#
 # Comparison with proteomic study (https://pmc.ncbi.nlm.nih.gov/articles/PMC12254397)
 # Download: https://pmc.ncbi.nlm.nih.gov/articles/instance/12254397/bin/44321_2025_258_MOESM7_ESM.xlsx
 # Put the file in the main folder.
@@ -755,3 +748,4 @@ for (i in 1:length(pathway)) {
 #-------------------------------------------------------------------------------
 #
 Tissue.ORA(Disease.module)
+
