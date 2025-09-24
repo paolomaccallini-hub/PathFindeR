@@ -75,3 +75,26 @@ The random seed is fixed (`set.seed(12345)`) to guarantee reproducible results a
 - Large STRING downloads can take several minutes. Check your network connection if the script appears idle during the initial setup.
 
 For any changes to the workflow, edit `PathFindeR_main.R` (for orchestration logic) or `PathFindeR_Func.R` (for helper routines) and rerun the script to regenerate outputs.
+
+## Methods and Results
+
+### Gene expansion, adjacency matrix, and graph
+
+All the genes with a PPI score above or equal to 0.7 are retrieved from a local installation of the STRING database (v12) for the 18 seeds (RABGAP1L, DARS2, RC3H1, ZBTB37, TNFSF4, ANKRD45, KLHL20, PRDX6, SERPINC1, SLC9C2, BTN2A2, TRIM38, ABT1, OLFM4, CSE1L, ARFGEF2, STAU1, ZNFX1). This leads to a merged gene list (MGL) of 345 genes, available in this repo as `All_genes.tsv`. For each predicted gene, this table contains the highest PPI score. It also keeps track of the seeds that generated each predicted gene, and for each seed, the complete set of predicted genes is indicated. After gene expansion, all the missing PPI scores are retrieved and stored in a symmetric matrix (adjacency matrix), saved as `Gene_matrix.tsv`, also present in this repository. A plot of the graph associated with the adjacency matrix is generated and reported below. Graphs are generated using the package `igraph`, and a file to input into Cytoscape is also generated (available in this repository as `All_genes_cytoscape.tsv`). 
+
+![All_genes_graph](https://github.com/user-attachments/assets/f521eca0-5034-4097-b478-f2f66ab9cf8a)
+
+In the image above, note that: seeds are written with a red font; genes that are specific to the GWAS obtained using patients who reported an infection at the onset are indicated in green, while genes associated with GWAS-1 (the main cohort of DecodeME) are indicated in purple.
+
+### Random walk with restart and pruning
+
+Genes of the MGL are ranked by the stationary probability of a random walk with restart, with initial probability assigned only to the seeds. Note that seeds that were ranked as tier one in the DecodeME preprint were assigned an initial probability double that of the one assigned to genes ranked tier two. In our case, only one of the 18 genes selected by fine-mapping is a tier two gene (OLFM4). The back probability employed is 0.7, and the stationary probability is calculated by the function `page_rank`. Then, genes are ranked according to their stationary probability (see column `score.RWR` of file `All_genes.tsv`). By selecting 90% of the total stationary probability, a disease module of 119 high-ranking genes is selected and plotted (see figure below). The corresponding files (as for the full MGL) are available in this repo.
+
+![All_genes_graph](https://github.com/user-attachments/assets/6eb89371-d63d-432c-a5c8-f95d19d9076d)
+
+### Gene-set enrichment analysis
+
+### Over-representation analysis
+
+### Comparison with results from previous experiments
+
