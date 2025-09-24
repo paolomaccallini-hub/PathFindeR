@@ -88,13 +88,28 @@ In the image above, note that: seeds are written with a red font; genes that are
 
 ### Random walk with restart and pruning
 
-Genes of the MGL are ranked by the stationary probability of a random walk with restart, with initial probability assigned only to the seeds. Note that seeds that were ranked as tier one in the DecodeME preprint were assigned an initial probability double that of the one assigned to genes ranked tier two. In our case, only one of the 18 genes selected by fine-mapping is a tier two gene (OLFM4). The back probability employed is 0.7, and the stationary probability is calculated by the function `page_rank`. Then, genes are ranked according to their stationary probability (see column `score.RWR` of file `All_genes.tsv`). By selecting 90% of the total stationary probability, a disease module of 119 high-ranking genes is selected and plotted (see figure below). The corresponding files (as for the full MGL) are available in this repo.
+Genes of the MGL are ranked by the stationary probability of a random walk with restart, with initial probability assigned only to the seeds. Note that seeds that were ranked as tier one in the DecodeME preprint were assigned an initial probability double that of the one assigned to genes ranked tier two. In our case, only one of the 18 genes selected by fine-mapping is a tier two gene (OLFM4). The back probability employed is 0.7, and the stationary probability is calculated by the function `page_rank`. Then, genes are ranked according to their stationary probability (see column `score.RWR` of file `All_genes.tsv`). By selecting 90% of the cumulative stationary probability (CSP), a disease module of 119 high-ranking genes is selected and plotted (see figure below). The corresponding files (as for the full MGL) are available in this repo.
 
 ![All_genes_graph](https://github.com/user-attachments/assets/6eb89371-d63d-432c-a5c8-f95d19d9076d)
 
 ### Gene-set enrichment analysis
 
+The script performs gene-set enrichment analysis (GSEA) on the MGL ranked by RWR. It uses the STRING database as a background and works on Reactome, KEGG, Disease Ontology, and Gene Ontology. No significant enrichment is reported.
+
 ### Over-representation analysis
+
+Over-representation analysis on Reactome, KEGG, Disease Ontology, and Gene Ontology is performed on the disease module. The top results are available in this repo, file `ORA_RWR.tsv`. The script also generates several plots to summarise the main results, which are reported below.
+
+![KEGG enrichment](https://github.com/user-attachments/assets/ff09f61a-098f-49dd-8dcf-43957a65d425)
+![Reactome enrichment](https://github.com/user-attachments/assets/35d78f83-312a-4516-952b-05ccfdf22960)
+![DO enrichment](https://github.com/user-attachments/assets/2a2ed630-081f-4692-a2ea-3833ab537cdc)
+![GO enrichment](https://github.com/user-attachments/assets/cc3174ab-c285-4a7d-b5f4-76afb234d351)
+![GO_ORA_goplot](https://github.com/user-attachments/assets/8c218bd4-28e9-475f-989b-8a236612f30e)
+![GO_ORA_cnetplot](https://github.com/user-attachments/assets/d59d99e0-5198-40b3-8b30-a6b4a81ec7e6)
 
 ### Comparison with results from previous experiments
 
+I compared the MGL and disease modules selected at different cut-offs of CSP with the following results from previous experiments:
+
+| Result | File | Reference |
+| Proteomic study 
