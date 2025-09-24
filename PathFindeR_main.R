@@ -1,4 +1,4 @@
-# file name: PathFindeR_Modules
+# file name: PathFindeR_Main
 #
 # Latest update: 22nd September 2025
 #
@@ -748,4 +748,5 @@ for (i in 1:length(pathway)) {
 #-------------------------------------------------------------------------------
 #
 Tissue.ORA(Disease.module)
+
 
