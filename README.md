@@ -110,12 +110,12 @@ Over-representation analysis on Reactome, KEGG, Disease Ontology, and Gene Ontol
 
 ### Comparison with results from previous experiments
 
-I compared the MGL and disease modules selected at different cut-offs of CSP (80%, ) with the following results from previous experiments:
+I compared the MGL and disease modules selected at different cut-offs of CSP (80%, 85%, 90%, 95%) with the following results from previous experiments:
 
 | Result | Input File | Reference |
 | ------ | ---------- | --------- | 
 | Disease module of 115 genes built using whole-genome sequencing data from 400 ME/CFS patients | `media-9.xlsx` | [Ref](https://pmc.ncbi.nlm.nih.gov/articles/PMC12047926/) |
-| Proteomic study on 1455 ME/CFS cases from the Uk Biobank database, compared with 131,303 controls. I used the total sample (males plus females) and the total effect |  `44321_2025_258_MOESM7_ESM.xlsx` | [Ref](https://www.embopress.org/doi/full/10.1038/s44321-025-00258-8) |
+| Proteomic study on 1455 ME/CFS cases from the UK Biobank database, compared with 131,303 controls. I used the total sample (males plus females) and the total effect |  `44321_2025_258_MOESM7_ESM.xlsx` | [Ref](https://www.embopress.org/doi/full/10.1038/s44321-025-00258-8) |
 | Collection of 497 known disease-gene associations for ME/CFS from different experiments, according to Open Target Platform | `OT-EFO_0004540-associated-targets-7_30_2025-v25_06.tsv` | [Ref](https://platform.opentargets.org/)
 
 Comparisons were performed using the hypergeometric test, using as background a set of 15,000 genes for the first and the third case, and of 2,895 (number of proteins tested in the proteomic study) for the second one. The results are collected in the file `replication.tsv` available in this repo and reported below:
