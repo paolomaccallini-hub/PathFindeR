@@ -90,7 +90,7 @@ In the image above, note that: seeds are written with a red font; genes that are
 
 Genes of the MGL are ranked by the stationary probability of a random walk with restart, with initial probability assigned only to the seeds. Note that seeds that were ranked as tier one in the DecodeME preprint were assigned an initial probability double that of the one assigned to genes ranked tier two. In our case, only one of the 18 genes selected by fine-mapping is a tier two gene (OLFM4). The back probability employed is 0.7, and the stationary probability is calculated by the function `page_rank`. Then, genes are ranked according to their stationary probability (see column `score.RWR` of file `All_genes.tsv`). By selecting 90% of the cumulative stationary probability (CSP), a disease module of 119 high-ranking genes is selected and plotted (see figure below). The corresponding files (as for the full MGL) are available in this repo.
 
-![All_genes_graph](https://github.com/user-attachments/assets/6eb89371-d63d-432c-a5c8-f95d19d9076d)
+![Disease_module_graph](https://github.com/user-attachments/assets/b3e6f98c-7f83-407e-bccc-7e32613702e9)
 
 ### Gene-set enrichment analysis
 
