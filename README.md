@@ -134,4 +134,6 @@ Comparisons were performed using the hypergeometric test, using as background a 
 | Disease.module.0.95 | Open Targets | 212 | 497 | 14 | 15000 | 1.12e-02 | ALB/CD28/CD4/CD40LG/CTLA4/FLNA/FMR1/GSR/HSPA8/IL10/IL6/LTF/TNF/VARS2 |
 | All genes | Proteomics | 109 | 233 | 17 | 2895 | 5.40e-03 | AGXT/AMBP/CD4/CD80/CHGA/F7/FGA/GGT1/GSTA1/GSTA3/HRG/PLAT/PROC/PROCR/SERPIND1/SERPINF2/TNFRSF9 |
 | Disease.module.0.8 | Proteomics | 8 | 233 | 0 | 2895 | 1.00e+00 | |
-| Disease.module.0.8
+| Disease.module.0.85 | Proteomics | 12 | 233 | 0 | 2895 | 1.00e+00 | |
+| Disease.module.0.9 | Proteomics | 34 | 233 | 3 | 2895 | 5.24e-01 | CD4/CHGA/TNFRSF9 |
+| Disease.module.0.95 | Proteomics | 55 | 233 | 5 | 2895 | 4.58e-01 | CD4/CD80/CHGA/FGA/TNFRSF9 |
