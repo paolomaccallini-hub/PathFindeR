@@ -742,11 +742,3 @@ for (i in 1:length(pathway)) {
 }
 #
 # submit this file at https://reactome.org/PathwayBrowser/#TOOL=AT
-#
-#-------------------------------------------------------------------------------
-# ORA for tissue-specific gene expression
-#-------------------------------------------------------------------------------
-#
-Tissue.ORA(Disease.module)
-
-
