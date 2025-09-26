@@ -16,7 +16,7 @@ The main script expects several input files in the repository root. Replace thes
 | `My_genes_DecodeME_preprint.csv` | Curated list of 32 DecodeME candidate genes from the DecodeME preprint ([Ref](https://www.medrxiv.org/content/10.1101/2025.08.06.25333109v1)). | 
 | `My_genes_DecodeME.csv` | Results of GWAS analysis and fine mapping of the DecodeME sumstats ([Ref](https://github.com/paolomaccallini-hub/DecodeME)). Used to filter the preprint list and annotate supporting evidence. |
 | `*-associated-targets-*.tsv` | Export from the Open Targets Platform for the ME/CFS. Any file whose name contains `-associated-targets-` will be loaded. |
-| `44321_2025_258_MOESM7_ESM.xlsx` | Proteomic results from UK Biobank (https://www.embopress.org/doi/full/10.1038/s44321-025-00258-8). If present, sheets 2 and 3 are processed and saved as `Data/UKBB_proteomics.xlsx`. | 
+| `44321_2025_258_MOESM7_ESM.xlsx` | Proteomic results from UK Biobank ([Ref](https://www.embopress.org/doi/full/10.1038/s44321-025-00258-8)). If present, sheets 2 and 3 are processed and saved as `Data/UKBB_proteomics.xlsx`. | 
 | `media-9.xlsx` | A disease module for ME/CFS of 115 genes, from a recent publication on 400 patients ([Ref](https://pmc.ncbi.nlm.nih.gov/articles/PMC12047926/)).  |
 
 ### External databases
