@@ -58,7 +58,6 @@ Running `PathFindeR_main.R` generates a comprehensive set of outputs inside `PF_
 - `Disease_results_list.rds` — serialized list containing the curated seed table, expanded gene table, adjacency matrix, and expanded gene-list matrix for downstream reuse.
 - Graph exports (`All_genes_graph.tiff`, `All_genes_cytoscape.tsv`, `Disease_module_graph.tiff`, etc.) describing the merged network and the high-confidence disease module.
 - ORA/GSEA outputs under `PF_output/ORA/` and `PF_output/GSEA/`, including tables of enriched KEGG, Reactome, GO, and Disease Ontology pathways and corresponding visualization files. KEGG pathway diagrams are moved into `PF_output/ORA/KEGG/`, while gene lists ready for Reactome’s Pathway Browser are saved into `PF_output/ORA/Reactome/`.
-- Tissue enrichment summaries produced by `Tissue.ORA()`.
 
 ## Customising the analysis
 
