@@ -119,8 +119,8 @@ I compared the MGL and disease modules selected at different cut-offs of CSP (80
 
 Comparisons were performed using the hypergeometric test, using as background a set of 15,000 genes for the first and the third case, and of 2,895 (number of proteins tested in the proteomic study) for the second one. The results are collected in the file `replication.tsv` available in this repo and reported below:
 
-| setA | setB | sizeA | sizeB | overlap | background | pvalue | genes |
-| :--- | :--- | :---: | :---: | :-----: | :--------: | :----: | :--- |
+| setA | setB | sizeA | sizeB | overlap | background | pvalue | genes                                    |
+| ---- | ---- | ----- | ----- | ------- | ---------- | ------ | ---------------------------------------- |
 | All genes | Zhang S 2025 | 345 | 115 | 1 | 15000 | 9.32e-01 | CDC23 |
 | Disease.module.0.8 | Zhang S 2025 | 23 | 115 | 0 | 15000 | 1.00e+00 | |
 | Disease.module.0.85 | Zhang S 2025 | 50 | 115 | 0 | 15000 | 1.00e+00 | |
