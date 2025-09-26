@@ -1102,7 +1102,7 @@ RWR<-function(gene.matrix,Exper_list) {
   score.df$p_star_iter<-p2[1,]
   print(paste0("RWR converged in ",count," iterations"))
   #
-  # Perform random walk with analytic solution
+  # Perform a random walk with analytic solution
   #
   I<-diag(1,V,V) # identity matrix
   score.df$score.RWR<-as.vector(gamma*solve(I-(1-gamma)*M)%*%score.df$p0)
@@ -1157,7 +1157,7 @@ RWR<-function(gene.matrix,Exper_list) {
     score.df$component[i]<-comps$membership[i]
   }
   #
-  # Chose best score 
+  # Choose the best score 
   #
   score.df$score.RWR<-score.df$p_star_pg
   #
@@ -1172,127 +1172,3 @@ RWR<-function(gene.matrix,Exper_list) {
   #
   return(score.df)
 }
-#
-#-------------------------------------------------------------------------------
-# Perform Random walk with restart with a leave-one-out algorithm to rank seed genes
-# and to define their start probability
-#-------------------------------------------------------------------------------
-# 
-RWR.loo<-function(gene.matrix,Exper_list) {
-  #
-  # Set back probability
-  #
-  gamma<-0.7 # back probability
-  #
-  # Build a data frame with genes
-  #
-  V<-nrow(gene.matrix) # number of states/genes/nodes
-  score.df<-data.frame(name=rownames(gene.matrix))
-  #
-  # Find seeds 
-  #
-  score.df$source<-"predicted"
-  for (i in 1:V) {
-    if (score.df$name[i]%in%Exper_list$name) score.df$source[i]<-"seed"
-  }
-  #
-  # Normalize by column the adjacency matrix and obtain the transition matrix M
-  #
-  M<-gene.matrix
-  for (j in 1:ncol(gene.matrix)) {
-    C<-sum(M[,j])
-    if (C>0) {
-      M[,j]<-M[,j]/C
-    } 
-  }
-  #
-  # Perform RWR each time with one seed out
-  #
-  NS<-length(which(score.df$source=="seed")) # number of seeds
-  score.df$p0.new<-rep(0,nrow(score.df))
-  for (s in 1:NS) {
-    #
-    # Set start probability for seed genes, taking weights into account and 
-    # removing one gene from seeds
-    #
-    Exper_list_loo<-Exper_list[-s,]
-    TOT<-sum(Exper_list_loo$weight)
-    score.df$p0<-rep(0,nrow(M)) # starting distribution
-    for (i in 1:V) {
-      if (score.df$name[i]%in%Exper_list_loo$name) {
-        index<-which(Exper_list_loo$name==score.df$name[i])
-        score.df$p0[i]<-Exper_list_loo$weight[index]/TOT 
-      }
-    }
-    #
-    # Perform random walk with analytic solution
-    #
-    I<-diag(1,V,V) # identity matrix
-    new_column<-as.vector(gamma*solve(I-(1-gamma)*M)%*%score.df$p0)
-    score.df$p0.new[s]<-new_column[s]
-    print(paste0("Performing RWR, removing ",Exper_list$name[s]," from seeds..."))
-  }
-  #
-  # Use the results of the previous step to define the new start probability for seeds 
-  #
-  TOT<-sum(score.df$p0.new)
-  for (s in 1:NS) {
-    score.df$p0.new[s]<-score.df$p0.new[s]/TOT
-  }
-  score.df<-subset.data.frame(score.df,select=-p0) # we do not need this column anymore
-  #
-  # Now perform RWR with this new p0
-  #
-  I<-diag(1,V,V) # identity matrix
-  score.df$score.RWR.loo<-as.vector(gamma*solve(I-(1-gamma)*M)%*%score.df$p0.new)
-  #
-  # Edit and return results
-  #
-  score.df<-subset.data.frame(score.df,select=-source)
-  score.df<-subset.data.frame(score.df,select=-p0.new)
-  #
-  return(score.df)
-}
-#
-#-------------------------------------------------------------------------------
-# This function add the haploinsufficiency and triplosensitivity probability 
-# of a gene (if available) accepting as input its NCBI id 
-#-------------------------------------------------------------------------------
-#
-Dosage<-function(NCBI.id) {
-  #
-  file.name<-paste0(current_dir,"/Data/Dosage_NCBI.txt")
-  Dosagseed.score<-read.csv(file=file.name,sep="\t")
-  #
-  df<-subset.data.frame(Dosagseed.score,NCBI==NCBI.id)
-  if (nrow(df)==1) {
-    return(df)
-  } else {
-    return(NA)  
-  }
-  #
-}   
-#
-#-------------------------------------------------------------------------------
-# This function add the probability of being a dominant gene
-#-------------------------------------------------------------------------------
-#
-DOMINO<-function(NCBI.id) {
-  #
-  file.name<-paste0(current_dir,"/Data/DOMINO_NCBI_feb_2019.txt")
-  Domino.score<-read.csv(file=file.name,sep="\t")
-  #
-  if (!is.na(NCBI.id)) {
-    df<-subset.data.frame(Domino.score,NCBI==NCBI.id)
-    if (nrow(df)==1) {
-      PAD<-df$Domino
-      return(PAD)
-    } else {
-      return(NA)
-    }
-  } else {
-    return(NA)
-  }
-  #
-}
-
