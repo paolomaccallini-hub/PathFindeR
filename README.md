@@ -118,6 +118,20 @@ I compared the MGL and disease modules selected at different cut-offs of CSP (80
 | Proteomic study on 1455 ME/CFS cases from the Uk Biobank database, compared with 131,303 controls. I used the total sample (males plus females) and the total effect |  `44321_2025_258_MOESM7_ESM.xlsx` | [Ref](https://www.embopress.org/doi/full/10.1038/s44321-025-00258-8) |
 | Collection of 497 known disease-gene associations for ME/CFS from different experiments, according to Open Target Platform | `OT-EFO_0004540-associated-targets-7_30_2025-v25_06.tsv` | [Ref](https://platform.opentargets.org/)
 
-Comparisons were performed using the hypergeometric test, using as background a set of 15,000 genes for the first and the third case, and of 2,895 (number of protein tested in the proteomeic study) for the second one. The results are collected in the file `replication.tsv` available in this repo and reported below:
+Comparisons were performed using the hypergeometric test, using as background a set of 15,000 genes for the first and the third case, and of 2,895 (number of proteins tested in the proteomic study) for the second one. The results are collected in the file `replication.tsv` available in this repo and reported below:
 
-
+| setA | setB | sizeA | sizeB | overlap | background | pvalue | genes |
+| :--- | :--- | :---: | :---: | :-----: | :--------: | :----: | :--- |
+| All genes | Zhang S 2025 | 345 | 115 | 1 | 15000 | 9.32e-01 | CDC23 |
+| Disease.module.0.8 | Zhang S 2025 | 23 | 115 | 0 | 15000 | 1.00e+00 | |
+| Disease.module.0.85 | Zhang S 2025 | 50 | 115 | 0 | 15000 | 1.00e+00 | |
+| Disease.module.0.9 | Zhang S 2025 | 119 | 115 | 0 | 15000 | 1.00e+00 | |
+| Disease.module.0.95 | Zhang S 2025 | 212 | 115 | 0 | 15000 | 1.00e+00 | |
+| All genes | Open Targets | 345 | 497 | 21 | 15000 | 5.59e-03 | ALB/CD28/CD4/CD40LG/CRP/CTLA4/ELANE/FLNA/FMR1/GSR/HPGDS/HPX/HSPA8/IL10/IL6/LTF/MTHFR/SERPINA5/SOD2/TNF/VARS2 |
+| Disease.module.0.8 | Open Targets | 23 | 497 | 0 | 15000 | 1.00e+00 | |
+| Disease.module.0.85 | Open Targets | 50 | 497 | 4 | 15000 | 8.32e-02 | FLNA/HSPA8/LTF/TNF |
+| Disease.module.0.9 | Open Targets | 119 | 497 | 12 | 15000 | 5.84e-04 | CD28/CD4/CD40LG/CTLA4/FLNA/FMR1/GSR/HSPA8/IL10/IL6/LTF/TNF |
+| Disease.module.0.95 | Open Targets | 212 | 497 | 14 | 15000 | 1.12e-02 | ALB/CD28/CD4/CD40LG/CTLA4/FLNA/FMR1/GSR/HSPA8/IL10/IL6/LTF/TNF/VARS2 |
+| All genes | Proteomics | 109 | 233 | 17 | 2895 | 5.40e-03 | AGXT/AMBP/CD4/CD80/CHGA/F7/FGA/GGT1/GSTA1/GSTA3/HRG/PLAT/PROC/PROCR/SERPIND1/SERPINF2/TNFRSF9 |
+| Disease.module.0.8 | Proteomics | 8 | 233 | 0 | 2895 | 1.00e+00 | |
+| Disease.module.0.8
