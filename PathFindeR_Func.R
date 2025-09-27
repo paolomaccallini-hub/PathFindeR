@@ -1301,15 +1301,6 @@ Tissue_Class_Count<-function(Exper_list) {
   #
   write.table(unique_tissues,file="PF_output/Tissues.csv",sep=",")
   #
-  # Plot results
-  #
-  tiff("PF_output/Tissues.tiff",width=12,height=6,units="in",res=600,compression="lzw")
-  ggplot(df, aes(x = class, y = tissue, size = tissue_count, color = class)) +
-    geom_point(alpha = 0.7) +
-    theme_minimal() +
-    labs(x = "Superclass", y = "Tissue", size = "Tissue count") +
-    theme(axis.text.y = element_text(size = 8))
-  dev.off()
-  #
   return(unique_tissues)
 }
+
