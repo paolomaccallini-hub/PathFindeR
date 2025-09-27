@@ -80,7 +80,7 @@ For any changes to the workflow, edit `PathFindeR_main.R` (for orchestration log
 
 ### Seeds from fine-mapping
 
-Fine-mapping on the DecodeME summary statistics, performed using the Linkage Disequilibrium (LD) matrices built on the UK Biobank population ([Ref](https://github.com/paolomaccallini-hub/DecodeME)) selects 18 of the 32 candidate genes proposed in the DecodeME preprint ([Ref](https://www.research.ed.ac.uk/files/533352484/Candidate_Genes.pdf)). They are listed below with some annotations.
+Fine-mapping on the DecodeME summary statistics, performed using the Linkage Disequilibrium (LD) matrices built on the UK Biobank population ([Ref](https://github.com/paolomaccallini-hub/DecodeME)) selects 18 of the 32 candidate genes proposed in the DecodeME preprint ([Ref](https://www.research.ed.ac.uk/en/publications/initial-findings-from-the-decodeme-genome-wide-association-study-)). They are listed below with some annotations.
 
 | name    | NCBI.id | list.name | weight | Gene_type      | Study_type | risk.locus | region     |
 |---------|---------|-----------|--------|----------------|------------|------------|------------|
