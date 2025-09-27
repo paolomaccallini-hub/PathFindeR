@@ -95,6 +95,23 @@ if(!dir.exists(folder_path)) {
   dir.create(folder_path) 
 } 
 #
+#-----------------------------------------------------------------------------
+# Use the eQTLs of the seeds to find tissues of interest
+#-----------------------------------------------------------------------------
+#
+Exper_list_2<-read.csv("My_genes_DecodeME.csv",sep=",",header=T)
+unique_tissues<-Tissue_Class_Count(Exper_list_2)
+#
+# Plot
+#
+tiff("PF_output/Tissues.tiff",width=12,height=6,units="in",res=600,compression="lzw")
+ggplot(df, aes(x = class, y = tissue, size = tissue_count, color = class)) +
+  geom_point(alpha = 0.7) +
+  theme_minimal() +
+  labs(x = "Superclass", y = "Tissue", size = "Tissue count") +
+  theme(axis.text.y = element_text(size = 8))
+dev.off()
+#
 #-------------------------------------------------------------------------------
 # Prepare background genes
 #-------------------------------------------------------------------------------
@@ -742,4 +759,5 @@ for (i in 1:length(pathway)) {
 }
 #
 # submit this file at https://reactome.org/PathwayBrowser/#TOOL=AT
+
 
