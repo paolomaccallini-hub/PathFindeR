@@ -1177,12 +1177,14 @@ RWR<-function(gene.matrix,Exper_list) {
 # Count GTEx tissue classes
 #-------------------------------------------------------------------------------
 #
-Tissue_Class_Count<-function(Exper_list) {
+Tissue_Class_Count<-function(Exper_list_2) {
   tissue_class <- list(
     PNS = c(
       "Nerve_Tibial"
     ),
     CNS = c(
+      "Brain_Amygdala",
+      "Brain_Substantia_nigra",
       "Brain_Anterior_cingulate_cortex_BA24",
       "Brain_Caudate_basal_ganglia",
       "Brain_Cerebellar_Hemisphere",
@@ -1248,6 +1250,7 @@ Tissue_Class_Count<-function(Exper_list) {
       "Cells_Cultured_fibroblasts"
     )
   )
+  Exper_list_2<-subset.data.frame(Exper_list_2,Description=="eQTL")
   unique_genes<-unique(Exper_list_2$name)
   Exper_list<-data.frame(name=unique_genes,tissue=unique_genes)
   #
@@ -1319,6 +1322,7 @@ Tissue_Class_Count<-function(Exper_list) {
   #
   return(unique_tissues)
 }
+
 
 
 
