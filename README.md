@@ -78,6 +78,33 @@ For any changes to the workflow, edit `PathFindeR_main.R` (for orchestration log
 
 ## Methods and Results
 
+### Seeds from fine-mapping
+
+Fine-mapping on the DecodeME summary statistics, performed using the Linkage Disequilibrium (LD) matrices built on the UK Biobank population ([Ref](https://github.com/paolomaccallini-hub/DecodeME)) selects 18 of the 32 candidate genes proposed in the DecodeME preprint ([Ref](https://www.research.ed.ac.uk/files/533352484/Candidate_Genes.pdf)). They are listed below with some annotations.
+
+## GWAS Gene List
+
+| name    | NCBI.id | list.name | weight | Gene_type      | Study_type | risk.locus | region     |
+|---------|---------|-----------|--------|----------------|------------|------------|------------|
+| ABT1    | 29777   | GWAS-1    | 1.0    | protein coding | GWAS       | 2          | chr6p22.2  |
+| ANKRD45 | 339416  | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| ARFGEF2 | 10564   | GWAS-1    | 1.0    | protein coding | GWAS       | 8          | chr20q13.13|
+| BTN2A2  | 10385   | GWAS-1    | 1.0    | protein coding | GWAS       | 2          | chr6p22.2  |
+| CSE1L   | 1434    | GWAS-1    | 1.0    | protein coding | GWAS       | 8          | chr20q13.13|
+| DARS2   | 55157   | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| KLHL20  | 27252   | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| OLFM4   | 10562   | GWAS-INF  | 0.5    | protein coding | GWAS       | 5          | chr13q14.3 |
+| PRDX6   | 9588    | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| RABGAP1L| 9910    | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| RC3H1   | 149041  | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| SERPINC1| 462     | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| SLC9C2  | 284525  | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| STAU1   | 6780    | GWAS-1    | 1.0    | protein coding | GWAS       | 8          | chr20q13.13|
+| TNFSF4  | 7292    | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| TRIM38  | 10475   | GWAS-1    | 1.0    | protein coding | GWAS       | 2          | chr6p22.2  |
+| ZBTB37  | 84614   | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
+| ZNFX1   | 57169   | GWAS-1    | 1.0    | protein coding | GWAS       | 8          | chr20q13.13|
+
 ### Gene expansion, adjacency matrix, and graph
 
 All the genes with a PPI score above or equal to 0.7 are retrieved from a local installation of the STRING database (v12) for the 18 seeds (RABGAP1L, DARS2, RC3H1, ZBTB37, TNFSF4, ANKRD45, KLHL20, PRDX6, SERPINC1, SLC9C2, BTN2A2, TRIM38, ABT1, OLFM4, CSE1L, ARFGEF2, STAU1, ZNFX1). This leads to a merged gene list (MGL) of 345 genes, available in this repo as `All_genes.tsv`. For each predicted gene, this table contains the highest PPI score. It also keeps track of the seeds that generated each predicted gene, and for each seed, the complete set of predicted genes is indicated. After gene expansion, all the missing PPI scores are retrieved and stored in a symmetric matrix (adjacency matrix), saved as `Gene_matrix.tsv`, also present in this repository. A plot of the graph associated with the adjacency matrix is generated and reported below. Graphs are generated using the package `igraph`, and a file to input into Cytoscape is also generated (available in this repository as `All_genes_cytoscape.tsv`). 
