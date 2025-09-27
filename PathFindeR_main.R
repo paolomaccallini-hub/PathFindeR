@@ -105,7 +105,7 @@ unique_tissues<-Tissue_Class_Count(Exper_list_2)
 # Plot
 #
 tiff("PF_output/Tissues.tiff",width=12,height=6,units="in",res=600,compression="lzw")
-ggplot(df, aes(x = class, y = tissue, size = tissue_count, color = class)) +
+ggplot(unique_tissues, aes(x = class, y = tissue, size = tissue_count, color = class)) +
   geom_point(alpha = 0.7) +
   theme_minimal() +
   labs(x = "Superclass", y = "Tissue", size = "Tissue count") +
@@ -759,5 +759,6 @@ for (i in 1:length(pathway)) {
 }
 #
 # submit this file at https://reactome.org/PathwayBrowser/#TOOL=AT
+
 
 
