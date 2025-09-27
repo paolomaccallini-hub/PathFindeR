@@ -103,6 +103,12 @@ Fine-mapping on the DecodeME summary statistics, performed using the Linkage Dis
 | ZBTB37  | 84614   | GWAS-1    | 1.0    | protein coding | GWAS       | 1          | chr1q25.1  |
 | ZNFX1   | 57169   | GWAS-1    | 1.0    | protein coding | GWAS       | 8          | chr20q13.13|
 
+### Tissue distribution of eQTLs for seed genes
+
+For each seed, all the unique tissues tagged by eQTLs from fine-mapping are collected. Next, tissues are classified into classes (like Brain, Digestive system, etc). It is counted how many times each tissue is represented and the count is summed up for each class of tissues. The results are collected in `Tissues.csv` and `Tissues.tiff`, available in this repository. The plot is reported below. 
+
+![Tissues](https://github.com/user-attachments/assets/f9841afd-d7e3-4d6c-a5d7-1cba23c52d95)
+
 ### Gene expansion, adjacency matrix, and graph
 
 All the genes with a PPI score above or equal to 0.7 are retrieved from a local installation of the STRING database (v12) for the 18 seeds (RABGAP1L, DARS2, RC3H1, ZBTB37, TNFSF4, ANKRD45, KLHL20, PRDX6, SERPINC1, SLC9C2, BTN2A2, TRIM38, ABT1, OLFM4, CSE1L, ARFGEF2, STAU1, ZNFX1). This leads to a merged gene list (MGL) of 345 genes, available in this repo as `All_genes.tsv`. For each predicted gene, this table contains the highest PPI score. It also keeps track of the seeds that generated each predicted gene, and for each seed, the complete set of predicted genes is indicated. After gene expansion, all the missing PPI scores are retrieved and stored in a symmetric matrix (adjacency matrix), saved as `Gene_matrix.tsv`, also present in this repository. A plot of the graph associated with the adjacency matrix is generated and reported below. Graphs are generated using the package `igraph`, and a file to input into Cytoscape is also generated (available in this repository as `All_genes_cytoscape.tsv`). 
