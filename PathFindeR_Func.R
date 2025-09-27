@@ -1297,11 +1297,28 @@ Tissue_Class_Count<-function(Exper_list) {
   unique_tissues<-unique_tissues[order(unique_tissues$tissue_count,decreasing=T),]
   unique_tissues<-unique_tissues[order(unique_tissues$class_count,decreasing=T),]
   #
+  # Add genes
+  #
+  tissues_A<-c()
+  unique_tissues$gene<-rep(NA,nrow(unique_tissues))
+  for (i in 1:nrow(Exper_list)) {
+    tissues_A<-str_split(Exper_list$tissue[i],pattern="/")[[1]]
+    index<-which(unique_tissues$tissue%in%tissues_A)
+    for (j in index) {
+      if (is.na(unique_tissues$gene[j])) {
+        unique_tissues$gene[j]<-Exper_list$name[i]
+      } else {
+        unique_tissues$gene[j]<-paste0(c(unique_tissues$gene[j],Exper_list$name[i]),collapse="/")
+      }
+    }
+  }
+  #
   # Save results
   #
   write.table(unique_tissues,file="PF_output/Tissues.csv",sep=",",row.names=F)
   #
   return(unique_tissues)
 }
+
 
 
