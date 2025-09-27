@@ -1299,8 +1299,9 @@ Tissue_Class_Count<-function(Exper_list) {
   #
   # Save results
   #
-  write.table(unique_tissues,file="PF_output/Tissues.csv",sep=",")
+  write.table(unique_tissues,file="PF_output/Tissues.csv",sep=",",row.names=F)
   #
   return(unique_tissues)
 }
+
 
