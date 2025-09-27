@@ -134,7 +134,7 @@ Over-representation analysis on Reactome, KEGG, Disease Ontology, and Gene Ontol
 
 ### KEGG pathways
 
-The top-ten KEGG pathways with a significant overlap from over-representation analysis are plotted with the enzymes from the disease module highlighted in red. Plotting are available in the file section of this repo. I've included one of them below.
+The top-ten KEGG pathways with a significant overlap from over-representation analysis are plotted with the enzymes from the disease module highlighted in red. Plots are available in the file section of this repo. I've included one of them below.
 
 <img width="1072" height="895" alt="hsa03013 Disease_ORA" src="https://github.com/user-attachments/assets/b5038f0f-36b1-4309-8b2d-87ff7a2ca573" />
 
