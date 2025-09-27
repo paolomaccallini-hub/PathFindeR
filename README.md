@@ -107,6 +107,12 @@ Over-representation analysis on Reactome, KEGG, Disease Ontology, and Gene Ontol
 ![GO_ORA_goplot](https://github.com/user-attachments/assets/8c218bd4-28e9-475f-989b-8a236612f30e)
 ![GO_ORA_cnetplot](https://github.com/user-attachments/assets/d59d99e0-5198-40b3-8b30-a6b4a81ec7e6)
 
+### KEGG pathways
+
+The top-ten KEGG pathways with a significant overlap from over-representation analysis are plotted with the enzymes from the disease module highlighted in red. Plotting are available in the file section of this repo. I've included one of them below.
+
+<img width="1072" height="895" alt="hsa03013 Disease_ORA" src="https://github.com/user-attachments/assets/b5038f0f-36b1-4309-8b2d-87ff7a2ca573" />
+
 ### Comparison with results from previous experiments
 
 I compared the MGL and disease modules selected at different cut-offs of CSP (80%, 85%, 90%, 95%) with the following results from previous experiments:
