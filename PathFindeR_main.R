@@ -10,11 +10,11 @@ source("PathFindeR_Func.R")
 #
 # Read 32 candidate genes form DecodeME preprint
 #
-Exper_list_1<-read.csv("My_genes_DecodeME_preprint.csv",sep=";",header=T) 
+Exper_list_1<-read.csv("My_genes_DecodeME_preprint.csv",sep=";",header=T) # candidate genes from DecodeME preprint
 #
 # Read candidate genes from fine-mapping
 #
-Exper_list_2<-read.csv("My_genes_DecodeME.csv",sep=";",header=T) # experimental data (UK Biobank)
+Exper_list_2<-read.csv("My_genes_DecodeME.csv",sep=",",header=T) # results from fine-mapping
 #
 # Subset the 32 candidate genes
 #
@@ -742,3 +742,4 @@ for (i in 1:length(pathway)) {
 }
 #
 # submit this file at https://reactome.org/PathwayBrowser/#TOOL=AT
+
