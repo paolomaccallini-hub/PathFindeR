@@ -33,7 +33,7 @@ library(enrichplot)
 library(GOplot)
 library(readxl) 
 library(writexl)
-library(TissueEnrich)
+library(ggplot2)
 #
 #-------------------------------------------------------------------------------
 # Build (if necessary) and load STRING database
@@ -1171,4 +1171,145 @@ RWR<-function(gene.matrix,Exper_list) {
   # Return results
   #
   return(score.df)
+}
+#
+#-------------------------------------------------------------------------------
+# Count GTEx tissue classes
+#-------------------------------------------------------------------------------
+#
+Tissue_Class_Count<-function(Exper_list) {
+  tissue_class <- list(
+    PNS = c(
+      "Nerve_Tibial"
+    ),
+    CNS = c(
+      "Brain_Anterior_cingulate_cortex_BA24",
+      "Brain_Caudate_basal_ganglia",
+      "Brain_Cerebellar_Hemisphere",
+      "Brain_Cerebellum",
+      "Brain_Cortex",
+      "Brain_Frontal_Cortex_BA9",
+      "Brain_Hippocampus",
+      "Brain_Hypothalamus",
+      "Brain_Nucleus_accumbens_basal_ganglia",
+      "Brain_Putamen_basal_ganglia",
+      "Brain_Spinal_cord_cervical_c-1"
+    ),
+    Cardiovascular = c(
+      "Artery_Aorta",
+      "Artery_Coronary",
+      "Artery_Tibial",
+      "Heart_Atrial_Appendage",
+      "Heart_Left_Ventricle"
+    ),
+    Muscle = c(
+      "Muscle_Skeletal"
+    ),
+    Endocrine = c(
+      "Adrenal_Gland",
+      "Pancreas",
+      "Pituitary",
+      "Thyroid"
+    ),
+    Immune = c(
+      "Whole_Blood",
+      "Cells_EBV-transformed_lymphocytes",
+      "Spleen"
+    ),
+    Digestive = c(
+      "Esophagus_Gastroesophageal_Junction",
+      "Esophagus_Mucosa",
+      "Esophagus_Muscularis",
+      "Colon_Sigmoid",
+      "Colon_Transverse",
+      "Stomach",
+      "Small_Intestine_Terminal_Ileum",
+      "Liver"
+    ),
+    Adipose = c(
+      "Adipose_Subcutaneous",
+      "Adipose_Visceral_Omentum"
+    ),
+    Respiratory = c(
+      "Lung"
+    ),
+    Reproductive = c(
+      "Breast_Mammary_Tissue",
+      "Ovary",
+      "Prostate",
+      "Testis",
+      "Uterus",
+      "Vagina"
+    ),
+    Other = c(
+      "Minor_Salivary_Gland",
+      "Skin_Not_Sun_Exposed_Suprapubic",
+      "Skin_Sun_Exposed_Lower_leg",
+      "Cells_Cultured_fibroblasts"
+    )
+  )
+  unique_genes<-unique(Exper_list_2$name)
+  Exper_list<-data.frame(name=unique_genes,tissue=unique_genes)
+  #
+  # Collect gene-tissues associations
+  #
+  for (i in 1:nrow(Exper_list)) {
+    df<-subset.data.frame(Exper_list_2,name==unique_genes[i])
+    Exper_list$tissue[i]<-paste0(df$Tissues,collapse="/")
+  }
+  #
+  # Remove duplicates
+  #
+  for (i in 1:nrow(Exper_list)) {
+    Exper_list$tissue[i]<-paste0(unique(str_split(Exper_list$tissue[i],pattern="/")[[1]]),collapse="/")
+  }
+  #
+  # Tissue count
+  #
+  unique_tissues<-paste0(Exper_list$tissue,collapse="/")
+  unique_tissues<-unique(str_split(unique_tissues,pattern="/")[[1]])
+  v<-unique_tissues
+  unique_tissues<-data.frame(tissue=v,tissue_count=v,class=v,class_count=v)
+  for (i in 1:nrow(unique_tissues)) {
+    index<-grep(unique_tissues$tissue[i],Exper_list$tissue)
+    unique_tissues$tissue_count[i]<-length(index)
+  }
+  unique_tissues$tissue_count<-as.numeric(unique_tissues$tissue_count)
+  #
+  # Tissue class
+  #
+  for (i in 1:nrow(unique_tissues)) {
+    for (j in 1:length(tissue_class)) {
+      if (unique_tissues$tissue[i]%in%tissue_class[[j]]) {
+        unique_tissues$class[i]<-names(tissue_class)[j]
+      }
+    }
+  }
+  #
+  # Tissue class count
+  #
+  unique_class<-unique(unique_tissues$class)
+  for (i in 1:nrow(unique_tissues)) {
+    df<-subset.data.frame(unique_tissues,class==unique_tissues$class[i])
+    unique_tissues$class_count[i]<-sum(df$tissue_count)
+  }
+  unique_tissues$class_count<-as.numeric(unique_tissues$class_count)
+  unique_tissues<-unique_tissues[order(unique_tissues$tissue_count,decreasing=T),]
+  unique_tissues<-unique_tissues[order(unique_tissues$class_count,decreasing=T),]
+  #
+  # Save results
+  #
+  write.table(unique_tissues,file="PF_output/Tissues.csv",sep=",")
+  #
+  # Plot results
+  #
+  tiff("PF_output/Tissues.tiff",width=12,height=6,units="in",res=600,compression="lzw")
+  ggplot(df, aes(x = class, y = tissue, size = tissue_count, color = class)) +
+    geom_point(alpha = 0.7) +
+    theme_minimal() +
+    labs(x = "Superclass", y = "Tissue", size = "Tissue count") +
+    theme(axis.text.y = element_text(size = 8))
+  dev.off()
+  #
+  return(unique_tissues)
 }
